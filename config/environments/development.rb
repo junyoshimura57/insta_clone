@@ -58,4 +58,7 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # セッション管理をredisを使うように変更。他の記事等には「config/initializers/session_store.rbを作成して設定を記載する」とあるけど5.2系からは不要？？
+  config.session_store :redis_store, { servers: 'redis://localhost:6379', expire_after: 1.day }
 end

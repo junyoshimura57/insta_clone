@@ -33,6 +33,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'slim-rails'
 # layoutファイルのerbを自動修正させるため追加
 gem 'html2slim'
+# redisを使用するために追加
+gem 'redis-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
