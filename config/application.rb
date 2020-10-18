@@ -26,6 +26,11 @@ module InstaClone
     # DBに保存する時間もJSTにする。(海外ユーザー等も使用する想定なら記載しない方が良い)
     config.active_record.default_timezone = :local
 
+    # デフォルト言語を日本語に設定
+    config.i18n.default_locale = :ja
+    # 以下を記載することでconfig/locales以下のどの階層のディレクトリも読み込みができるようになる。(どういう時に必要になるんだろう？？)
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
