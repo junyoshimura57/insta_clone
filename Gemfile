@@ -51,6 +51,16 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # エラーの画面にリクエスト情報、ローカル変数情報を出すために追加
+  gem 'better_errors'
+  # 上記エラー画面にirbをつけるために追加
+  gem 'binding_of_caller'
+
+  # pryでデバッグをするために追加(irbに比べてシンタックスハイライトが効くなどメリットがあるらしい)
+  gem 'pry-rails'
+  # pryでstepなどのデバックコマンドを使えるようになる。
+  gem 'pry-byebug'
 end
 
 group :test do
