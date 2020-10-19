@@ -28,7 +28,7 @@ module InstaClone
 
     # デフォルト言語を日本語に設定
     config.i18n.default_locale = :ja
-    # 以下を記載することでconfig/locales以下のどの階層のディレクトリも読み込みができるようになる。(どういう時に必要になるんだろう？？)
+    # 以下を記載することでconfig/locales以下のどの階層のディレクトリも読み込みができるようになる。(どういう時に必要になるんだろう？？→modelやviewごとにjaファイルを用意する時必要となる！)
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
 
     # Settings in config/environments/* take precedence over those specified here.

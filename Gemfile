@@ -61,6 +61,9 @@ group :development do
   gem 'pry-rails'
   # pryでstepなどのデバックコマンドを使えるようになる。
   gem 'pry-byebug'
+
+  # 各モデルにカラム情報を出したり、config/routes.rbにルーティング情報を書き出してくれる。(便利！！)
+  gem 'annotate'
 end
 
 group :test do
