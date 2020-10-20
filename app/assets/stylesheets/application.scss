@@ -1,0 +1,21 @@
+// scssにすると「*= require_self」のディレクティブの記載は不要になる？？
+@import 'bootstrap-material-design/dist/css/bootstrap-material-design';
+
+// こちらは解答よりコピー
+body {
+  position: relative;
+  height: 100vh;
+}
+
+.login-register-form {
+  position: relative;
+  height: 100vh;
+
+  .login-register-form-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+  }
+}
