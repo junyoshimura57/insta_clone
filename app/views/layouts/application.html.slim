@@ -1,11 +1,19 @@
 doctype html
 html
   head
+    / 以下を記載することでutf-8とブラウザに解釈させる？？(現場Railsでは書いてないけど、必須？？)
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     title
-      | InstaClone
+      | InstaCloneApp
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
   body
+    / patialのヘッダー、フラッシュメッセージを呼び出す。
+    - if logged_in?
+      = render 'shared/header'
+    - else
+      = render 'shared/before_login_header'
+    = render 'shared/flash_messages'
     = yield

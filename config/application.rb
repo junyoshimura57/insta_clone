@@ -1,5 +1,6 @@
 require_relative 'boot'
 
+# APIモードでrails newをしていないので解答と異なっている様子。
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems

@@ -36,6 +36,16 @@ gem 'html2slim'
 # redisを使用するために追加
 gem 'redis-rails'
 
+# sorceryを使用するため追加
+gem 'sorcery'
+
+# jquery、popper_jsがないとエラーが出たため追加。(yarnで入れたものを活かすには、マニュフェストファイルの内容をdist/jquery.jsに変更要？？)
+gem 'jquery-rails'
+gem 'popper_js'
+
+# エラー文言を日本語で出すために追加
+gem 'rails-i18n'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -76,3 +86,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# フォントオーサムを使用するため追加
+gem 'font-awesome-sass'

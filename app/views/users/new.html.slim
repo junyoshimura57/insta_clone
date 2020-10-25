@@ -1,0 +1,28 @@
+/ viewについては解答を写経(bootstrap-material-design公式サイトでどんなデザインになるかは確認)
+/ 以下の2つのクラスはapplication.scssに定義(ログインフォームを真ん中におくため)
+.login-register-form
+  .login-register-form-inner
+    / カードかつmargin-bottomを1rem(ルート要素の等倍)のデザイン。
+    .card.mb-3
+      = form_with model: @user, class: 'card-body', local: true do |f|
+        / エラーメッセージ部分はテンプレートで呼び出し、ローカル変数にオブジェクトを渡す。(objectというローカル変数名で@userオブジェクトを渡している。)
+        = render 'shared/error_messages', object: @user
+        / 公式だと「bmd-label-floating」はラベル名のアニメーションが出るみたいだが、「.bmd-label-static」と同様になっているのはなぜ？？
+        .form-group
+          = f.label :username, class: 'bmd-label-floating'
+          = f.text_field :username, class: 'form-control'
+        .form-group
+          = f.label :email, class: 'bmd-label-floating'
+          = f.email_field :email, class: 'form-control'
+        .form-group
+          = f.label :password, class: 'bmd-label-floating'
+          = f.password_field :password, class: 'form-control'
+        .form-group
+          = f.label :password_confirmation, class: 'bmd-label-floating'
+          = f.password_field :password_confirmation, class: 'form-control'
+
+        = f.submit '登録', class: 'btn btn-raised btn-primary'
+    .card
+      .card-body
+        | アカウントをお持ちですか
+        = link_to 'ログインする', login_path

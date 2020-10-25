@@ -1,5 +1,8 @@
 // scssにすると「*= require_self」のディレクティブの記載は不要になる？？
 @import 'bootstrap-material-design/dist/css/bootstrap-material-design';
+// フォントオーサムを読み込み(以下の順番が大切らしい)
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 // こちらは解答よりコピー
 body {
