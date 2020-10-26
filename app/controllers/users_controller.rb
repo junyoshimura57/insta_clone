@@ -14,13 +14,12 @@ class UsersController < ApplicationController
       flash.now[:danger] = 'ユーザーの作成に失敗しました'
       render :new
     end
-
   end
 
   private
 
-    # ストロングパラメーターを定義
-    def user_params
-      params.require(:user).permit(:email, :password, :password, :password_confirmation, :username)
-    end
+  # ストロングパラメーターを定義
+  def user_params
+    params.require(:user).permit(:email, :password, :password, :password_confirmation, :username)
+  end
 end

@@ -1,6 +1,5 @@
 class UserSessionsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     # sorceryを使っている場合は、loginメソッドでUserモデルから検索できる。ただなぜストロングパラメーターは不要？？
