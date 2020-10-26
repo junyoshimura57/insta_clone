@@ -74,6 +74,10 @@ group :development do
 
   # 各モデルにカラム情報を出したり、config/routes.rbにルーティング情報を書き出してくれる。(便利！！)
   gem 'annotate'
+
+  # Ruby用のrubocopとRails用のrubocop-railsを追加。(ターミナルでしか使わないため、require: falseを追加)
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
 end
 
 group :test do
