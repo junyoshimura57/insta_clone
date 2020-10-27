@@ -20,6 +20,8 @@ module InstaClone
       g.skip_routes false
       # テストファイルは作成せず
       g.test_framework false
+      # ヘルパーファイルも作成せず
+      g.helper false
     end
 
     # TimeWithZoneオブジェクトにする際にTokyoのオブジェクトにする。
