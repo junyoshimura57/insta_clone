@@ -3,6 +3,8 @@ html
   head
     / 以下を記載することでutf-8とブラウザに解釈させる？？(現場Railsでは書いてないけど、必須？？)
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    / 実際の液晶の解像度ではなく、スマホに合わせた小さい値になる。width=device-widthとinitial-scale=1は同じ意味だが、OSよっては未対応の場合があるためどちらも記載する。
+    meta[name="viewport" content="width=device-width, initial-scale=1.0"]
     title
       | InstaCloneApp
     = csrf_meta_tags
