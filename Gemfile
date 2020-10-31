@@ -46,6 +46,9 @@ gem 'popper_js'
 # エラー文言を日本語で出すために追加
 gem 'rails-i18n'
 
+# Carrierwaveを使用するため追加
+gem 'carrierwave'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
