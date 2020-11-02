@@ -49,6 +49,9 @@ gem 'rails-i18n'
 # Carrierwaveを使用するため追加
 gem 'carrierwave'
 
+# CarrierWaveのエラーを日本語化させるため追加
+gem 'carrierwave-i18n'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
