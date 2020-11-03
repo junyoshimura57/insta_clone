@@ -89,6 +89,8 @@ GEM
     debug_inspector (0.0.3)
     erubi (1.9.0)
     execjs (2.7.0)
+    faker (2.14.0)
+      i18n (>= 1.6, < 2)
     faraday (1.1.0)
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
@@ -305,6 +307,7 @@ DEPENDENCIES
   carrierwave
   carrierwave-i18n
   chromedriver-helper
+  faker
   font-awesome-sass
   html2slim
   jbuilder (~> 2.5)
