@@ -1,7 +1,12 @@
 class PostImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  # MiniMagickのモジュールを読み込み
+  include CarrierWave::MiniMagick
+  # 画像の縦横比を維持したまま縦横を最大1000pxにリサイズ
+  # 上手く作動されているかは、検証ツールのintrinsicの項目を見れば良い？？
+  process resize_to_fit: [1000, 1000]
+
 
   # Choose what kind of storage to use for this uploader:
   # ここで保存先を設定できる(デフォルトはpublic/配下)
