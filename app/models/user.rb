@@ -32,5 +32,5 @@ class User < ApplicationRecord
   # 投稿が自身のものかを判別するためのメソッドを定義
   def own?(object)
     id == object.user_id
-  end  
+  end
 end

@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
   end
-  
+
   def create
     # current_userに関連させてpostインスタンスを作成する。
     @post = current_user.posts.new(post_params)
@@ -42,15 +42,16 @@ class PostsController < ApplicationController
     # 他のユーザーの投稿の詳細ページも見たいので、current_user.postsとはしない。
     @post = Post.find(params[:id])
   end
-  
+
   def destroy
     @post = current_user.posts.find(params[:id])
     # 削除が失敗したら例外をだす。
     @post.destroy!
     redirect_to posts_path, success: '投稿を削除しました'
   end
-  
+
   private
+
   # 画像が単数の場合は:imageで良いが、複数の場合はimages: []とする。
   def post_params
     params.require(:post).permit(:body, images: [])

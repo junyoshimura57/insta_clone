@@ -7,7 +7,6 @@ class PostImageUploader < CarrierWave::Uploader::Base
   # 上手く作動されているかは、検証ツールのintrinsicの項目を見れば良い？？
   process resize_to_fit: [1000, 1000]
 
-
   # Choose what kind of storage to use for this uploader:
   # ここで保存先を設定できる(デフォルトはpublic/配下)
   storage :file
@@ -43,7 +42,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
   # For images you might use something like this:
   # ホワイトリストでアップできる拡張子を設定できる。
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
   # Override the filename of the uploaded files:
