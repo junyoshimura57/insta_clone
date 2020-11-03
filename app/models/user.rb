@@ -28,4 +28,9 @@ class User < ApplicationRecord
 
   # 関連を定義。dependentオプションでuserが削除されたら、関連するpostも削除とする。
   has_many :posts, dependent: :destroy
+
+  # 投稿が自身のものかを判別するためのメソッドを定義
+  def own?(object)
+    id == object.user_id
+  end  
 end

@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   def index
     # 「複数のUserが投稿したPostを全件取得」かつ「誰が投稿したかアソシエーションを使用して表示」するとN+1問題(usersテーブルに1回+postsテーブルにN回アクセスのSQLが発生する問題)が発生する。
     # そのためincludesメソッドを使用して、「postsの全内容取得」と「関連するuserの全件取得」をしておく。(preloadを使用してもいいはず！)
-    @posts = Post.all.includes(:user).order(create_at: :desc)
+    @posts = Post.all.includes(:user).order(created_at: :desc)
   end
 
   def new

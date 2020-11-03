@@ -3,6 +3,8 @@
 // フォントオーサムを読み込み(以下の順番が大切らしい)
 @import "font-awesome-sprockets";
 @import "font-awesome";
+// swiperのcss読み込み
+@import 'swiper/swiper-bundle';
 
 // こちらは解答よりコピー
 body {

@@ -2,7 +2,7 @@
   .row
     / グリッドシステムを使っている。(768px以上の場合は、12分割の8対2に分けている)
     .col-md-8.col-12
-      / = render @posts
+      = render @posts
     .col-md-4.col-12
       - if logged_in?
         .profile-box.mb-3
