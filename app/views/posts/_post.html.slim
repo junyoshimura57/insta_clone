@@ -1,0 +1,24 @@
+.card.mb-5.post
+  .card-header
+    .d-flex.align-items-center
+      = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle mr-1'
+      = post.user.username
+      / ぼっち演算子(&.)を使用することでcurrent_userがnilの場合でもエラーが出ないようにしている。
+      - if current_user&.own?(post)
+        .ml-auto
+          / 「method: :delete」は実はrails-ujsを使用しているらしい。
+          = link_to post_path(post), class: 'mr-3', method: :delete, data: { confirm: '本当に削除しますか？' } do
+            = icon 'far', 'trash-alt', class: 'fa-lg'
+          = link_to edit_post_path(post) do
+            = icon 'far', 'edit', class: 'fa-lg'
+  = link_to post_path(post) do
+    / swiperのcssの当て方は公式のコードを見ながらやると良さそう。
+    .swiper-container
+      .swiper-wrapper
+        - post.images.each do |image|
+          .swiper-slide
+            = image_tag image.url, class: 'card-img-top'
+      .swiper-pagination
+  .card-body
+    .card-text
+      = post.body

@@ -28,3 +28,6 @@
 # データベースの設定内容が見れないように追加(現場railsのP.362)
 # 「database.yml.example」を新規作成(チーム開発の際は各自コピーして使う)
 /config/database.yml
+
+# 保存された画像をgit管理の対象外とする。
+/public/uploads
