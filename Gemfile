@@ -53,6 +53,9 @@ gem 'carrierwave'
 # CarrierWaveのエラーを日本語化させるため追加
 gem 'carrierwave-i18n'
 
+# ページネーションを導入するために追加
+gem 'kaminari'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
