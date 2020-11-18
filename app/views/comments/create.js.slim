@@ -1,0 +1,14 @@
+/ 非同期処理の場合は、こちらでエラーの場合の表示制御を行う。
+/ js.slimファイルでjsのコードを記載したい場合は、パイプを使う必要がある。(erbの場合はタグを書かないだけでOK)
+- if @comment.errors.present?
+  /エラーがある場合は、内容をalertメソッドで出力をする。
+  / @comment.errors.full_messagesは配列形式でエラーメッセージが入っているため、join('\n')で連結&改行させる。
+  | alert("#{@comment.errors.full_messages.join('\n')}");
+
+/ なぜ「$(document).ready」でdomの読み込みを待つ必要がない？→操作対象のDOM自体は「posts/show.html.slim」で表示済みであるから！
+-else
+  / comments-boxクラスの先頭に_comment.html.slimの内容をレンダリングさせる！(難しい！！！)
+  / またescape_javascript(エイリアスで「j」)メソッドでレンダリングの結果をJS用に変換？する。
+  | $('.comments-box').prepend("#{j render('comments/comment', comment: @comment)}");
+  / input-comment-bodyクラス(入力欄)の内容をブランクにする。
+  | $('.input-comment-body').val('');

@@ -1,0 +1,8 @@
+/ render commentsは、「_comments.html.slim」をレンダリングしている訳ではない！！
+/ commentsには@comentsが渡されているため、collectionオプションが使用されている。
+/ 省略形でない形に変換して考えると以下となる。
+/ - @comments.each do |comment|
+/   = render partial: 'comment', locals: {comment: comment}
+/ 上記よりローカル変数(comment)にインスタンス変数(@comment)を渡して、テンプレート(comments/_comment.heml.slim)をレンダリングする。  
+.comments-box
+  = render comments

@@ -1,0 +1,7 @@
+- if @comment.errors.present?
+  | alert("#{@comment.errors.full_messages.join('\n')}");
+- else
+  / _comment.heml.slim(コメントの1つの部分)をhtmlメソッドでdomを書き換える。
+  | $("#comment-#{@comment.id}").html("#{j render('comments/comment', comment: @comment)}");
+  / _modal_form.html.slim(モーダルの中身部分)をmodalメソッドで閉じる。
+  | $("#comment-edit-modal").modal('hide');

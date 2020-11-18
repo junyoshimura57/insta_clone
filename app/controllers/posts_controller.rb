@@ -42,6 +42,11 @@ class PostsController < ApplicationController
   def show
     # 他のユーザーの投稿の詳細ページも見たいので、current_user.postsとはしない。
     @post = Post.find(params[:id])
+    # postの詳細画面にコメントを非同期で表示させるために以下を記載。
+    # どのユーザーのコメントかの情報も表示するのにN+1問題を避けるためincludesでuser情報も取得。
+    @comments = @post.comments.includes(:user).order(created_at: :desc)
+    # コメントにとってpostのshowアクションが新規登録画面となるのでコメントインスタンスを作成。
+    @comment = Comment.new
   end
 
   def destroy

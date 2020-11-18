@@ -22,4 +22,7 @@
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :post
+
+  # nullは不可および文字数を1000文字までに制限するバリデーションを追加’
+  validates :body, presence: true, length: { maximum: 1000 }
 end

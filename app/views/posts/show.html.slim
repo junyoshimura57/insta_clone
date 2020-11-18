@@ -28,20 +28,9 @@
           = simple_format(@post.body)
       hr
       / コメント一覧
-      .row.no-gutters
-        .col-2
-          = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle'
-        .col-10
-          | テストコメント1
-      hr
-      .row.no-gutters
-        .col-2
-          = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle'
-        .col-10
-          | テストコメント2
+      / ローカル変数(comments)にインスタンス変数(@comments)を渡して、テンプレート(comments/_comments.heml.slim)をレンダリングする。  
+      = render 'comments/comments', comments: @comments
     hr.m-0
     .post-comment.p-3
-      form.form-inline.mb-0
-        input type="text" class="form-control input-comment-body" placeholder="コメント"
-        button type="submit" class="btn btn-primary btn-raised"
-          | テストコメント3
+      / ローカル変数(post、comments)にインスタンス変数(@post、@comments)をそれぞれ渡して、テンプレート(comments/_form.heml.slim)をレンダリングする。  
+      = render 'comments/form', post: @post, comment: @comment

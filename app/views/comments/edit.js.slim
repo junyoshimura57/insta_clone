@@ -1,0 +1,4 @@
+/ htmlメソッドでmodal-containerのID箇所(application.html.slim)にcomments/_modal_formを表示させるようにDOM操作
+| $("#modal-container").html("#{j(render 'modal_form', comment: @comment)}");
+/ _modal_form.html.slimをモーダル形式で表示をさせる。
+| $("#comment-edit-modal").modal('show');
