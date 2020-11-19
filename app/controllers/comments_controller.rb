@@ -22,7 +22,8 @@ class CommentsController < ApplicationController
     @comment.destroy!
   end
 
-  private 
+  private
+
   def comment_params
     # mergeメソッドを使用することで、URLに含まれるpost_idをActionController::Parametersインスタンスを生成できる。
     # コンソールで右記を確認。<ActionController::Parameters {"body"=>"テスト", "post_id"=>"44"} permitted: true>
@@ -33,5 +34,4 @@ class CommentsController < ApplicationController
     # post_idはすでに保存されているため、merge不要。(外部キーはpermitにカラム記載不要！)
     params.require(:comment).permit(:body)
   end
-  
 end
