@@ -1,0 +1,14 @@
+/ dom操作用にidを定義
+.modal#comment-edit-modal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h5.modal-title コメント編集
+        / 自分でモーダルを作成した時は、bootstrapの公式をみるとクラス名などわかりそう。
+        / 以下は静的なモーダルを作成している。
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          / 公式だと「&times;」であった。(×印の文字参照らしい)
+          span aria-hidden="true"  &times;
+      .modal-body
+        / _form.html.slimをレンダリングする。/commnet/idというactionを作成すれば良いため、postはnilとする。
+        = render 'form', post: nil, comment: comment

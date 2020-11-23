@@ -1,0 +1,19 @@
+/ JSを使用してDOM操作をする対象を判別するためにhtmlのid属性にcommentのidを入れておく。
+div id="comment-#{comment.id}"
+  / no-guttersとすることで各カラムの左右の余白が0になる。
+  .row.no-gutters
+    .col-2
+      = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle'
+    .col-9
+      span.font-weight-bold.pr-1
+        = comment.user.username
+      = comment.body
+    .col-1
+      / 自分のコメントであれば、編集・削除アイコンを表示する。
+      - if current_user&.own?(comment)
+        = link_to comment_path(comment), class: 'mr-3', method: :delete, data: {confirm: '本当に削除しますか？'}, remote: true do
+          = icon 'far', 'trash-alt', class: 'fa-sm'
+        = link_to edit_comment_path(comment), remote: true do
+          = icon 'far', 'edit', class: 'fa-sm'
+  / hrは水平線を引くためのタグ
+  hr

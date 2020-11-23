@@ -1,0 +1,5 @@
+/ 新規登録の場合は、「posts/:post_id/comments」というURLを作成したいので、「model: [post, comment]」とする。(デフォルトで非同期通信なので、remote: trueは省略可能)
+/ 非同期通信でのリクエストは、JS形式となるため「create.js.erb」or「update.js.erb」がコントローラー経由で呼ばれる。
+= form_with model: [post, comment], class: 'd-flex mb-0 flex-nowrap justify-content-between', remote: true do |f|
+  = f.text_field :body, class: 'form-control input-comment-body', placeholder: 'コメント'
+  = f.submit '投稿', class: 'btn btn-primary btn-raised'
