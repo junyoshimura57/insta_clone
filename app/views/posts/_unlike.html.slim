@@ -1,0 +1,6 @@
+/ ①current_user.likesでcurrent_userに関連するデータをlikesテーブルから複数件取得。
+/ ②find_by(post_id: post.id)で①の中から対象投稿のレコードを抽出。
+/ ③上記より対象のlikeオブジェクトが戻り値になる。
+/ ④生成されるリンクのURLは、「href="/likes/:id"」でHTTPメソッドはdeleteとなる。
+= link_to like_path(current_user.likes.find_by(post_id: post.id)), method: :delete, remote: true do
+  = icon 'fa', 'heart', class: 'fa-lg'

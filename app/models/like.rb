@@ -22,4 +22,7 @@
 class Like < ApplicationRecord
   belongs_to :user
   belongs_to :post
+
+  # scopeを付けないと「1ユーザー」が「1いいね」しかできなくなってしまうので、scopeで「投稿単位」の一意制約とする。(複数項目をscopeに設定することもできる)
+  validates :user_id, uniqueness: { scope: :post_id }
 end

@@ -29,4 +29,8 @@ class Post < ApplicationRecord
   validates :body, presence: true, length: { maximum: 1000 }
 
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  # likesテーブルを通してusersテーブルの情報も取得できるようにするために以下を定義
+  # アソシエーション名をテーブル名と変更しているため、sourceモデル名(単数形！)を記載する。
+  has_many :like_users, through: :likes, source: :user
 end

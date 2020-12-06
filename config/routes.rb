@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'likes/create'
-  get 'likes/destroy'
   root 'posts#index'
 
   # %iでシンボルの配列がリテラルでかける。
@@ -9,6 +7,8 @@ Rails.application.routes.draw do
   resources :posts, shallow: true do
     resources :comments
   end
+  # 今回はネストさせずにルーティングを設定(postsにネストさせてもできそう！)
+  resources :likes, only: %i[create destroy]
 
   # セッション管理のルーティングを以下に記載。
   get 'login', to: 'user_sessions#new'

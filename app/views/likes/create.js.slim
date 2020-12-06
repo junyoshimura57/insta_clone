@@ -1,2 +1,2 @@
-h1 Likes#create
-p Find me in app/views/likes/create.html.slim
+/ htmlメソッドでいいねボタンのデザインを非同期で変更。(_unlikeをレンダリング)
+| $("#like_area-#{@post.id}").html("#{j render('posts/unlike', post: @post)}")

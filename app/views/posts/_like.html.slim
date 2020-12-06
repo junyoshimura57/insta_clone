@@ -1,0 +1,5 @@
+/ likeはルーティングでネストをさせていないため、URLからpost_idを取得することができない。
+/ なので(post_id: post.id)でクエリパラメーターとしてpost_idを渡す。
+/ 生成されるリンクのURLは「href="/likes?post_id=43"」のような形式になる。
+= link_to likes_path(post_id: post.id), method: :post, remote:true do
+  = icon 'far', 'heart', class: 'fa-lg'
