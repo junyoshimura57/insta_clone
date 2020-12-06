@@ -1,6 +1,6 @@
 class LikesController < ApplicationController
   # ログインユーザーのみいいねできるようにフィルタを設定
-  before_action
+  before_action :require_login, only: %i[create destroy]
   def create
     @post = Post.find(params[:post_id])
     # 今まで以下のようにcreateメソッドを使用する方法しか知らなかったので違和感がある。(以下でも動いたので、間違いではなさそう)
