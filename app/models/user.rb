@@ -32,8 +32,31 @@ class User < ApplicationRecord
   # 後から関連モデルを作成しても既存のモデルには関連の定義は自動では記載されないため注意する。
   has_many :comments, dependent: :destroy
 
+  # postsモデルと同様に関連を定義する。
+  has_many :likes, dependent: :destroy
+  has_many :like_posts, through: :likes, source: :post
+
   # 投稿が自身のものかを判別するためのメソッドを定義
   def own?(object)
     id == object.user_id
+  end
+
+  # ①self.like_postsでcurrent_userがlikeをしたpostをlikesテーブル経由で取得。
+  # ②引数のpost(いいねをしたい投稿)を①に追加をする。
+  def like(post)
+    like_posts << post
+  end
+
+  # ①self.like_postsでcurrent_userがlikeをしたpostをlikesテーブル経由で取得。
+  # ②引数のpost(いいねを解除したい投稿)を①から削除をする。
+  def unlike(post)
+    like_posts.destroy(post)
+  end
+
+  # ①self.like_postsでcurrent_userがlikeをしたpostをlikesテーブル経由で取得。
+  # ②include?メソッドで引数のpostオブジェクトが①にあるかを確認。
+  # ③②の結果によりtrue,falseを返す。
+  def like?(post)
+    like_posts.include?(post)
   end
 end

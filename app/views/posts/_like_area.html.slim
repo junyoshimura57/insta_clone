@@ -1,0 +1,8 @@
+/ 非同期でdom操作を行うためidを設定
+div id="like_area-#{post.id}"
+  / 対象の投稿にいいねをしてる場合は、_unlikeをレンダリング
+  -if current_user.like?(post)
+    = render 'unlike', post: post
+  / 対象の投稿にいいねしていない場合は、_likeをレンダリング
+  - else
+    = render 'like', post: post

@@ -11,6 +11,13 @@
             = icon 'far', 'trash-alt', class: 'fa-lg'
           = link_to edit_post_path(post) do
             = icon 'far', 'edit', class: 'fa-lg'
+      / current_userがnilでない(ログインしている)かつ自分の投稿でない場合はlike_area(likeボタン)を表示させる。
+      - if current_user && !current_user.own?(post)
+        / ml-autoでMargin Leftとして右側に配置する。
+        .ml-auto
+          / postインスタンスを渡して_like_areaをレンダリング
+          = render 'like_area', post: post
+
   = link_to post_path(post) do
     / swiperのcssの当て方は公式のコードを見ながらやると良さそう。
     .swiper-container
