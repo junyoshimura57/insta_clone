@@ -36,6 +36,22 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :like_posts, through: :likes, source: :post
 
+  # 【特定のユーザーがフォローをしているユーザーとの関係】
+  # ■relationshipsテーブ(中間テーブル)との関連を定義
+  # ①名前被りを防ぐため、active_をつけて、class_nameオプションでモデル指定。
+  # ②「user_id」が外部キーではないため、foreign_keyオプションで外部キーを指定。
+  # ③ユーザーを削除した時に中間テーブルの該当項目も削除したいため、dependent: :destroyオプションを指定。
+  has_many :active_relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
+  # ■followedテーブル(usersテーブル)との関連を定義(active_relationships経緯)
+  # 中間テーブルを介してfollowedモデルのUser(フォローされた側)を集めることを「following」と定義する。(source: :userとやりたくなるが、user_idと内部結合使用としてしまうためNG)
+  has_many :following, throgh :active_relationships, source: :followed
+
+  # 【特定のユーザーがフォローされるユーザーとの関係】
+  # ■relationshipsテーブル(中間テーブル)との関連を定義
+  has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
+  # ■followerテーブル(usersテーブル)との関連を定義(passive_relationships経緯)
+  has_many :followers, throgh :passive_relationships, source: :follower
+
   # 投稿が自身のものかを判別するためのメソッドを定義
   def own?(object)
     id == object.user_id

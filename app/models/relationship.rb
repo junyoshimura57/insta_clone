@@ -16,7 +16,7 @@
 #
 class Relationship < ApplicationRecord
   # belongs_to :userとしたいとこだが、今回は1つのuserテーブルに対して「Follower_id」、「Followed_id」という2つの関連付けをさせるため以下のように記載する。  
-  # class_name:の箇所はモデル名になることに地味に注意
+  # class_name:の箇所は文字列になることに地味に注意
   belongs_to :follower, class_name: 'User'
   belongs_to :followed, class_name: 'User'
   # モデル側で以下のバリデーションをつける
