@@ -15,4 +15,12 @@
 #  index_relationships_on_follower_id_and_followed_id  (follower_id,followed_id) UNIQUE
 #
 class Relationship < ApplicationRecord
+  # belongs_to :userとしたいとこだが、今回は1つのuserテーブルに対して「Follower_id」、「Followed_id」という2つの関連付けをさせるため以下のように記載する。  
+  # class_name:の箇所はモデル名になることに地味に注意
+  belongs_to :follower, class_name: 'User'
+  belongs_to :followed, class_name: 'User'
+  # モデル側で以下のバリデーションをつける
+  validates :follower_id, presence true
+  validates :followed_id, presence true
+  validates :follower_id, :uniqueness: {scope: :followed_id}
 end
