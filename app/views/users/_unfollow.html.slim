@@ -1,0 +1,6 @@
+/ フォローを解除したいため、以下手順でrelationshipsテーブルから該当のレコードを削除する。
+/ ①current_user.active_relationshipsでログインユーザーがフォローしているレコードをrelationshipsより取得
+/ ②find_by(followed_id: user.id)で①のレコードから今回フォローを外すのuserのレコードを指定
+/ ③レコードの削除を非同期で実行したいため、deleteメソッドかつremote: trueオプションをしてする。
+= link_to relationship_path(current_user.active_relationships.find_by(followed_id: user.id)), class: 'btn btn-warning btn-raised', method: :delete, remote: true do
+  | アンフォロー

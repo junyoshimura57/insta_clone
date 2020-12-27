@@ -1,0 +1,10 @@
+/ 投稿一覧で作成したユーザー一覧(右側の部分)の件数制限なし版をユーザー一覧画面として作成する。
+.container
+  .row
+    .col-md-6.col-12.offset-md-3.mb-3
+      .card
+        .card-body
+          = render @users
+    .col-md-6.col-12.offset-md-3
+      / ページネーションをつける
+      = paginate @users

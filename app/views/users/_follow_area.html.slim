@@ -1,0 +1,9 @@
+/ ログイン中かつ自分のユーザー表示でなければ
+- if logged_in? && current_user.id != user.id
+  / 非同期で処理処理するためidを用意
+  div id="follow-area-#{user.id}"
+    / ユーザーのフォロー有無を出し分けをする
+    - if current_user.following?(user)
+      = render 'users/unfollow', user: user
+    -else
+      = render 'users/follow', user: user
