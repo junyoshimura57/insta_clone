@@ -81,7 +81,7 @@ class User < ApplicationRecord
   def follow(other_user)
     following << other_user
   end
-  
+
   # ①self.followingでcurrent_userがフォローしたユーザーを取得。
   # ②destroyメソッドをメソッドチェーンして、引数のユーザーを削除。
   def unfollow(other_user)
