@@ -52,6 +52,10 @@ class User < ApplicationRecord
   # ■followerテーブル(usersテーブル)との関連を定義(passive_relationships経緯)
   has_many :followers, through: :passive_relationships, source: :follower
 
+  # scopeでrecentメソッド()を定義する。
+  # クラスメソッドと異なり常にActiveRecord::Relationオブジェクトを返すためメソッドチェーンを使える。(nilの場合は、allメソッドとなる)
+  scope :recent, ->(count) { order(created_at: :desc).limit(count) }
+
   # 投稿が自身のものかを判別するためのメソッドを定義
   def own?(object)
     id == object.user_id
@@ -99,8 +103,4 @@ class User < ApplicationRecord
   def feed
     Post.where(user_id: following_ids << id)
   end
-
-  # scopeでrecentメソッド()を定義する。
-  # クラスメソッドと異なり常にActiveRecord::Relationオブジェクトを返すためメソッドチェーンを使える。(nilの場合は、allメソッドとなる)
-  scope :recent, ->(count) { order(created_at: :desc).limit(count) }
 end
