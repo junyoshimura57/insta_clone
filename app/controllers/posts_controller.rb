@@ -6,7 +6,16 @@ class PostsController < ApplicationController
     # 「複数のUserが投稿したPostを全件取得」かつ「誰が投稿したかアソシエーションを使用して表示」するとN+1問題(usersテーブルに1回+postsテーブルにN回アクセスのSQLが発生する問題)が発生する。
     # そのためincludesメソッドを使用して、「postsの全内容取得」と「関連するuserの全件取得」をしておく。(preloadを使用してもいいはず！)
     # params[:page]で表示するページ番号を渡しており、pageメソッドで渡されたページ番号の範囲のデータを取得している。
-    @posts = Post.all.includes(:user).page(params[:page]).order(created_at: :desc)
+    # @posts = Post.all.includes(:user).page(params[:page]).order(created_at: :desc)
+
+    # ログインをしている場合は、自分の投稿とフォローしたユーザーの投稿のみの表示とするため、if文で分岐。
+    @posts = if current_user
+               current_user.feed.includes(:user).page(params[:page]).order(created_at: :desc)
+             else
+               Post.all.includes(:user).page(params[:page]).order(created_at: :desc)
+             end
+    # 最近作成のユーザー5件を表示するため、userインスタンスを作成。
+    @users = User.recent(5)
   end
 
   def new

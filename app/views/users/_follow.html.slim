@@ -1,0 +1,4 @@
+/ フォローを追加したいため、以下手順でrelationshipsテーブルにレコード作成をする。
+/ relationships_path(followed: user.id)でクエリパラメーターでフォロー対象のuser_idを渡しつつcreateアクションに飛ばす。
+= link_to relationships_path(followed_id: user.id), class: 'btn btn-raised btn-outline-warning', method: :post, remote: true do
+  | フォロー

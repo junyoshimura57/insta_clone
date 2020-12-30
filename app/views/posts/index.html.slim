@@ -2,7 +2,12 @@
   .row
     / グリッドシステムを使っている。(768px以上の場合は、12分割の8対2に分けている)
     .col-md-8.col-12
-      = render @posts
+      / @postsがnilの場合は、「投稿がありません」を表示
+      - if @posts.present?
+        = render @posts
+      - else
+        .text-center.font-weight-bold
+          | 投稿がありません
       / paginateメソッドで現在のページ数、他ページへのリンクを作成(このメソッド凄い！)
       = paginate @posts
     .col-md-4.col-12
@@ -15,17 +20,11 @@
           .card-header
             | ユーザー
           .card-body
-            .user.mb-3
-              = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle mr-1'
-              | テスト 太郎
-            .user.mb-3
-              = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle mr-1'
-              | テスト 次郎
-            .user.mb-3
-              = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle mr-1'
-              | テスト 三郎
-            .user.mb-3
-              = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle mr-1'
-              | テスト 四郎
+            / 以下の省略形で記載
+            / <% @users.each do |user| %>
+            / <%= render partial: 'user', locals: {user: user} %>
+            / <% end %>
+            / users/_user.html.slimをレンダリング？(別ディレクトリでもディレクト名と同じ場合は可能？？)
+            = render @users
           .card-footer
-            = link_to 'すべて見る', '#'
+            = link_to 'すべて見る', users_path
