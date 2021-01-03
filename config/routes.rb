@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   # shallowオプションでcommentsのedit,show,destroy,updateに/posts/:post_idが付かなくなる。
   resources :posts, shallow: true do
     resources :comments
+    # /posts/searchのルーティングを作成する。(/posts/:id/searchとしたい場合は、memberを使う)
+    get :search, on: :collection
   end
   # 今回はネストさせずにルーティングを設定(postsにネストさせてもできそう！)
   resources :likes, only: %i[create destroy]

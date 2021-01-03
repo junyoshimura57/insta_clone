@@ -33,4 +33,10 @@ class Post < ApplicationRecord
   # likesテーブルを通してusersテーブルの情報も取得できるようにするために以下を定義
   # アソシエーション名をテーブル名と変更しているため、sourceモデル名(単数形！)を記載する。
   has_many :like_users, through: :likes, source: :user
+
+  # 検索クエリのスコープを以下に定義
+  scope :body_contain, ->(word) { where('body LIKE ?', "%#{word}%") }
+  # commentsテーブルのcomment.bodyカラムを検索したいため、内部結合をする。またbodyカラムは名前が被るため、「comments.」としてテーブル特定をする。
+  scope :comment_body_contain, ->(word) { joins(:comments).where('comments.body LIKE ?', "%#{word}%") }
+  scope :username_contain, ->(word) { joins(:user).where('username LIKE ?', "%#{word}%") }
 end
