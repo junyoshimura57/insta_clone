@@ -65,6 +65,13 @@ class PostsController < ApplicationController
     redirect_to posts_path, success: '投稿を削除しました'
   end
 
+  def search
+    # ①@search_form(検索値)をレシーバとしてsearchメソッドを実行する。
+    # ②N+1問題を解消させるためにincludes(:user)をメソッドチェーン
+    # ページネーションのためにpage(params[:page])をさらにメソッドチェーン
+    @posts = @search_form.search.includes(:user).page(params[:page])
+  end
+
   private
 
   # 画像が単数の場合は:imageで良いが、複数の場合はimages: []とする。
