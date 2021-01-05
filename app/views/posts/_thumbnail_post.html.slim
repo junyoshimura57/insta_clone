@@ -1,0 +1,6 @@
+/ 画面がPCサイズの場合は、親要素の12分の4の列幅で表示
+/ マージンボトムは3rem(remとはhtml要素のfont-sizeを1remと定義するサイズ定義。bootstrapのデフォルトは、16pxらしい)
+.col-md-4.mb-3
+  = link_to post_path(post), class: 'thumbs' do
+    / 「postインスタン.images.first.url」でPostImageUploaderクラスのメソッドを使って、1枚目の画像ファイルのURLを取得する。
+    = image_tag post.images.first.url
