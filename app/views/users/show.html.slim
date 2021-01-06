@@ -1,12 +1,20 @@
 / ユーザー詳細ページを用意する。
 .container
   .row
-    .col-md-6.offset-md-3
+    .col-md-10.offset-md-1
       .card
         .card-body
           .text-center.mb-3
             = image_tag 'profile-placeholder.png', size: '100×100', class: 'rounded-circle mr-1'
-            .profile.text-center-mb-3
-              = @user.username
-            .text-center
-              = render 'follow_area', user: @user
+          .profile.text-center.mb-3
+            = @user.username
+          .text-center
+            = render 'follow_area', user: @user
+          / hrタグで水平線を引く
+          hr
+          .row
+            / 自分の登録を全て表示する。
+            / collectionオプションを使って部分テンプレートの呼び出しを行う。(eachで展開するよりもパフォーマンスも良いらしい)
+            /　asオプションで任意の変数名の指定も可能
+            /　テンプレートファイル名と変数名が異なるため、「render @user.posts」までの省略はできない。
+            = render partial: 'posts/thumbnail_post', collection: @user.posts, as: "post"
