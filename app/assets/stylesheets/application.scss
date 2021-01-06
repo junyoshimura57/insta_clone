@@ -104,3 +104,31 @@ img {
 .pagination {
   justify-content: center;
 }
+
+// サムネイルのcssを定義する。
+.thumbs {
+  width: 100%;
+  // 子要素でabsoluteを使用するために指定(そういうものらしい...)
+  position: relative;
+  // aタグをブロック要素にするために指定(width: 100%を有効にするため？)
+  display: block;
+
+  // &をつけることで親のセレクタ(thumbs)が付与される。
+  // ::beforeは指定したセレクタの要素の前に内容を追加できる。
+  // 空のブロック要素を前に入れることでサムネイルの上の空白を作っている？？(thumbsにマージンボトム設定だとダメ？？)
+  &::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
+  // イメージの縦横比を揃える。
+  img {
+    width: 100%;
+    height: 100%;
+    // 親要素内で縦横100％表示の場合はposition: absoluteが必要？？
+    position: absolute;
+    top: 0;
+    // 以下により縦横比を維持したまま中央でトリミングできる。
+    object-fit: cover;
+  }
+}
