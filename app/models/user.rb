@@ -17,8 +17,11 @@
 #
 class User < ApplicationRecord
   authenticates_with_sorcery!
-  # 以下バリデーションを追加(回答も見ながら写経)
 
+  # 「アップロード画像用のカラム」と「アップローダークラス」を紐付け
+  mount_uploader :avatar, AvatarUploader
+
+  # 以下バリデーションを追加(回答も見ながら写経)
   validates :username, uniqueness: true, presence: true
   validates :email, uniqueness: true, presence: true
   # 「if: ->」と書き方は見慣れないが、->の右側がtureであればバリデーションが実行される？？
