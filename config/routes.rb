@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  namespace :mypage do
-    get 'account/edit'
-    get 'account/update'
-  end
+  root 'posts#index'
+
   # セッション管理のルーティングを以下に記載。
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
