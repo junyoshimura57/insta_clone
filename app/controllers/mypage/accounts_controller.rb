@@ -7,7 +7,7 @@ class Mypage::AccountsController < Mypage::BaseController
   def update
     @user = User.find(current_user.id)
     if @user.update(account_params)
-      #　更新が成功した場合には、フラッシュメッセージを渡して、編集画面にレンダリング
+      # 　更新が成功した場合には、フラッシュメッセージを渡して、編集画面にレンダリング
       redirect_to edit_mypage_account_path, success: 'プロフィールを更新しました'
     else
       # flash.nowで同じリクエスト内でフラッシュメッセージを表示
