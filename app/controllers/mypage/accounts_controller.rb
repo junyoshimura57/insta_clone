@@ -1,5 +1,5 @@
 # BaseControllerを継承する。
-class Mypage::AccountController < Mypage::BaseController
+class Mypage::AccountsController < Mypage::BaseController
   def edit
     @user = User.find(current_user.id)
   end
@@ -19,6 +19,6 @@ class Mypage::AccountController < Mypage::BaseController
   private
 
   def account_params
-    params.require(:user).permit(:email, :avatar, :avatar_cache)
+    params.require(:user).permit(:email, :username, :avatar, :avatar_cache)
   end
 end
