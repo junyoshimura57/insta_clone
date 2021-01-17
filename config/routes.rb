@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  get 'relationships/create'
-  get 'relationships/destroy'
   root 'posts#index'
+
+  # セッション管理のルーティングを以下に記載。
+  get 'login', to: 'user_sessions#new'
+  post 'login', to: 'user_sessions#create'
+  delete 'logout', to: 'user_sessions#destroy'
 
   # %iでシンボルの配列がリテラルでかける。
   resources :users, only: %i[new create show index]
@@ -16,8 +19,9 @@ Rails.application.routes.draw do
 
   resources :relationships, only: %i[create destroy]
 
-  # セッション管理のルーティングを以下に記載。
-  get 'login', to: 'user_sessions#new'
-  post 'login', to: 'user_sessions#create'
-  delete 'logout', to: 'user_sessions#destroy'
+  # 「マイページ系」の機能拡張を想定してnamespaceを使用する。(URL、ファイル構成ともにmypage配下になる)
+  namespace :mypage do
+    # アカウントはログインユーザーからみてアプリケーション上、１つしか存在しないので:idを生成しない「resource」を使用する。
+    resource :account, only: %i[edit update]
+  end
 end

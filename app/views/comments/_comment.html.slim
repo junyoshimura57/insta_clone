@@ -3,7 +3,7 @@ div id="comment-#{comment.id}"
   / no-guttersとすることで各カラムの左右の余白が0になる。
   .row.no-gutters
     .col-2
-      = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle'
+      = image_tag comment.user.avatar.url, size: '40x40', class: 'rounded-circle'
     .col-9
       span.font-weight-bold.pr-1
         = comment.user.username
