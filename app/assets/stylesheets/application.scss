@@ -5,6 +5,7 @@
 @import "font-awesome";
 // swiperのcss読み込み
 @import 'swiper/swiper-bundle';
+@import 'header';
 
 // こちらは解答よりコピー
 body {
@@ -130,5 +131,13 @@ img {
     top: 0;
     // 以下により縦横比を維持したまま中央でトリミングできる。
     object-fit: cover;
+  }
+}
+
+#header-activities {
+  width: 400px;
+  .dropdown-item {
+    max-width: initial;
+    font-size: 12px;
   }
 }

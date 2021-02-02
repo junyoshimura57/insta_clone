@@ -1,0 +1,11 @@
+- if current_user.activities.present?
+  / スコープを使って表示件数を絞る
+  - current_user.activities.recent(10).each do |activity|
+    / enumの確認メソッドを使ってビューファイルの出しわけを行う。
+    = render "shared/#{activity.action_type}", activity: activity
+  / 10件以上ある場合はリンクを表示させる。
+  - if current_user.activities.count > 10
+    = link_to '全てみる', mypage_activities_path,  class: 'dropdown-item justify-content-center'
+- else
+  .dropdown-item
+    | お知らせはありません

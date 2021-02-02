@@ -1,0 +1,23 @@
+/ 自分宛のコメントがある場合は、以下を表示する。
+/ 「/activities/:id/read」へのリンク(既読判定のメソッド)を作り、cssで既読有無によって背景を変更する。
+= link_to read_activity_path(activity), class: "dropdown-item border-bottom #{'read' if activity.read?}", method: :patch do
+  / activity.user.avatar.urlだと上手く取得できない。
+  / ポリモーフィックの場合は、activity.subjectで対象のオブジェクトを取得する必要がある。
+  = image_tag activity.subject.user.avatar.url, class: 'rounded-circle mr-1', size: '30x30'
+  / aタグの中にaタグを使いたい時は、objectタグを使う(ただ別タブでリンクしないと上手くリンクされない！！)
+  object
+    = link_to activity.subject.user.username, user_path(activity.subject.user)
+  | があなたの
+  object
+    / activity.subjectでコメントのインスタンスを取得して、関連を使って投稿を取得する。
+    = link_to '投稿', post_path(activity.subject.post)
+  | に
+  object
+    / anchorをつけるとURLに「#comment-31」という形式アンカーリンクを生成できる。
+    = link_to 'コメント', post_path(activity.subject.post, anchor: "comment-#{activity.subject.id}")
+  | しました
+  .ml-auto
+    / ここではコメントのインスタンスではなく、アクティビティの作成時間を表示する。
+    / lメソッドを使用して日本式の時刻表示にする。
+    = l activity.created_at, format: :short
+

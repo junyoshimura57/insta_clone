@@ -55,6 +55,8 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   # ■followerテーブル(usersテーブル)との関連を定義(passive_relationships経緯)
   has_many :followers, through: :passive_relationships, source: :follower
+  # ユーザーが削除したら、関連のアクティビティを削除する。
+  has_many :activities, dependent: :destroy
 
   # scopeでrecentメソッド()を定義する。
   # クラスメソッドと異なり常にActiveRecord::Relationオブジェクトを返すためメソッドチェーンを使える。(nilの場合は、allメソッドとなる)

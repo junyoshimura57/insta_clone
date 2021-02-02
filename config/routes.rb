@@ -19,6 +19,10 @@ Rails.application.routes.draw do
 
   resources :relationships, only: %i[create destroy]
 
+  # patchメソッドの「/activities/:id/read」のエンドポイントを作成する。
+  resources :activities, only: [] do
+    patch :read, on: :member
+  end
   # 「マイページ系」の機能拡張を想定してnamespaceを使用する。(URL、ファイル構成ともにmypage配下になる)
   namespace :mypage do
     # アカウントはログインユーザーからみてアプリケーション上、１つしか存在しないので:idを生成しない「resource」を使用する。
