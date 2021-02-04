@@ -21,6 +21,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Activity < ApplicationRecord
+  # post_pathなどは、デフォルトではコントローラとビューでしかURLヘルパーを定義する。
+  include Rails.application.routes.url_helpers
   # 以下を記載することでactivity.subjectで関連するオブジェクトを取得できる。(自分のカラムを指定するのに凄く違和感があるが、これがpolymorphic)
   belongs_to :subject, polymorphic: true
   belongs_to :user
@@ -31,4 +33,17 @@ class Activity < ApplicationRecord
   enum action_type: { commented_to_own_post: 0, liked_to_own_post:1, followed_me: 2 }
   # readカラムについては、既読　or 未読の2種類のためboolean型でenumを定義
   enum read: { unread: false, read: true }
+
+  def redirect_path
+    # case文でリダイレクト先を分ける。
+    # case文ではイミュータブルなオブジェクトであるシンボルに変換をする？
+    case action_type.to_sym
+    when :commented_to_own_post
+      post_path(subject.post, anchor: "comment-#{subject.id}")
+    when :liked_to_own_post
+      post_path(subject.post)
+    when :followed_me
+      user_path(subject.follower)
+    end
+  end
 end

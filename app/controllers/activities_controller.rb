@@ -6,6 +6,7 @@ class ActivitiesController < ApplicationController
     activity = current_user.activities.find(params[:id])
     # enumの更新メソッドと確認メソッドを使用して既読管理を行う（便利！！）
     activity.read! if activity.unread?
-    redirect_to root_path
+    # 通知の種類によってリダイレクト先を分ける。(モデルにロジックは定義)
+    redirect_to activity.redirect_path
   end
 end
