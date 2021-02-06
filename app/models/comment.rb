@@ -22,8 +22,8 @@
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :post
-  #　コメントを削除すると関連アクティティも削除する。
-  #　commnetsテーブルとactivitiesテーブルの関係は、1対多なのでhas_manyで関連付け。
+  # コメントを削除すると関連アクティティも削除する。
+  # commnetsテーブルとactivitiesテーブルの関係は、1対多なのでhas_manyで関連付け。
   has_many :activity, as: :subject, dependent: :destroy
 
   # nullは不可および文字数を1000文字までに制限するバリデーションを追加’
