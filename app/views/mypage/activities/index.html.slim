@@ -1,0 +1,9 @@
+- if @activities.present?
+  - @activities.each do |activity|
+    / enumのaction_typeの種類によってレンダリング先を分ける。
+    = render "#{activity.action_type}", activity: activity
+  = paginate @activities
+
+- else
+  .text-center
+    | お知らせはありません

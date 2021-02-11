@@ -14,8 +14,15 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-white
         = link_to new_post_path, class: 'nav-link' do
           = icon 'far', 'image', class: 'fa-lg'
       li.nav-item
-        a.nav-link href="#"
-          = icon 'far', 'heart', class: 'fa-lg'
+        .dropdown
+          / slimの場合は、idとクラスは連続で記述できる。
+          a#dropdownMenuButton.nav-link href="#" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true"
+            = icon 'far', 'heart', class: 'fa-lg'
+            = render 'shared/unread_badge'
+          /　aria-labelledbyにハートアイコン部分のIDを指定することで、ドロップダウンの項目にすることができる様子。(正直bootstrapは理解が怪しい...)
+          #header-activities.dropdown-menu.dropdown-menu-right aria-labelledby="dropdownMenuButton"
+            = render 'shared/header_activities'
+
       li.nav-item
         / ヘッダーのアイコンを自分の詳細ページへのリンクとする。
         = link_to user_path(current_user), class: 'nav-link' do
