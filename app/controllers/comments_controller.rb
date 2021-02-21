@@ -5,7 +5,8 @@ class CommentsController < ApplicationController
     # ログイン中のユーザーと関連をさせて、コメントのインスタンス作成する。(関連を使用する時は慣習的にnewでなく、buildを使う。)
     # user_idはcurrent_userを使って、post_idはURLからparams経由で登録をする。
     @comment = current_user.comments.build(comment_params)
-    @comment.save
+    # @comment.save
+    UserMailer.with(user_form: current_user, user_to: @comment.post.user, comment: @comment).comment_post.deliver_later if @comment.save
   end
 
   def edit
