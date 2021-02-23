@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     # user_idはcurrent_userを使って、post_idはURLからparams経由で登録をする。
     @comment = current_user.comments.build(comment_params)
     # @comment.save
-    UserMailer.with(user_form: current_user, user_to: @comment.post.user, comment: @comment).comment_post.deliver_later if @comment.save
+    UserMailer.with(user_from: current_user, user_to: @comment.post.user, comment: @comment).comment_post.deliver_later if @comment.save
   end
 
   def edit
