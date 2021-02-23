@@ -90,6 +90,12 @@ group :development do
   # Ruby用のrubocopとRails用のrubocop-railsを追加。(ターミナルでしか使わないため、require: falseを追加)
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
+
+  # letter_operner_webを利用するために追加
+  gem 'letter_opener_web'
+
+  # 　configを利用するために追加
+  gem 'config'
 end
 
 group :test do

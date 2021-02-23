@@ -61,4 +61,11 @@ Rails.application.configure do
 
   # セッション管理をredisを使うように変更。他の記事等には「config/initializers/session_store.rbを作成して設定を記載する」とあるけど5.2系からは不要？？
   config.session_store :redis_store, { servers: 'redis://localhost:6379', expire_after: 1.day }
+
+  # 開発環境のメール送信にletter_opener_webを使うための設定記載
+  config.action_mailer.delivery_method = :letter_opener_web
+
+  # メールでリンクをつけた際には、host(サーバー)を明示的に宣言しておく必要があるらしい...
+  # to_hで{ host: 'localhost:3000' }を開発環境ではhostに設定する。
+  config.action_mailer.default_url_options = Settings.default_url_options.to_h
 end

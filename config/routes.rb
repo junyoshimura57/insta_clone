@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # development環境の際にletter_operner_webを使用できるように追加
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   root 'posts#index'
 
   # セッション管理のルーティングを以下に記載。
