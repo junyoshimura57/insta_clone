@@ -93,6 +93,9 @@ group :development do
 
   # letter_operner_webを利用するために追加
   gem 'letter_opener_web'
+
+  #　configを利用するために追加
+  gem 'config'
 end
 
 group :test do
