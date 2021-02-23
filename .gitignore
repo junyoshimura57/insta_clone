@@ -31,3 +31,6 @@
 
 # 保存された画像をgit管理の対象外とする。
 /public/uploads
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
