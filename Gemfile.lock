@@ -89,6 +89,7 @@ GEM
       activesupport (>= 4.2)
       deep_merge (~> 1.2, >= 1.2.1)
       dry-schema (~> 1.0)
+    connection_pool (2.2.2)
     crass (1.0.6)
     debug_inspector (0.0.3)
     deep_merge (1.2.1)
@@ -191,6 +192,7 @@ GEM
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
+    mustermann (1.0.3)
     mysql2 (0.5.3)
     nio4r (2.5.4)
     nokogiri (1.10.10)
@@ -217,6 +219,8 @@ GEM
     public_suffix (4.0.6)
     puma (3.12.6)
     rack (2.2.3)
+    rack-protection (2.0.7)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.4.4)
@@ -307,6 +311,16 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    sidekiq (6.0.1)
+      connection_pool (>= 2.2.2)
+      rack (>= 2.0.0)
+      rack-protection (>= 2.0.0)
+      redis (>= 4.1.0)
+    sinatra (2.0.7)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.7)
+      tilt (~> 2.0)
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
@@ -384,6 +398,8 @@ DEPENDENCIES
   rubocop-rails
   sass-rails (~> 5.0)
   selenium-webdriver
+  sidekiq
+  sinatra
   slim-rails
   sorcery
   spring
