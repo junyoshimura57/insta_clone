@@ -1,6 +1,10 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   # development環境の際にletter_operner_webを使用できるように追加
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+  # mount Sidekiq::Web => '/sidekiq'と書くのと同じ様子
+  mount Sidekiq::Web, at: '/sidekiq'
   root 'posts#index'
 
   # セッション管理のルーティングを以下に記載。
