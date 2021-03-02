@@ -58,7 +58,6 @@ gem 'kaminari'
 
 gem 'sidekiq'
 
-
 # sidekiqのダッシュボードを利用するために、sinatraをいれる。
 gem 'sinatra'
 
