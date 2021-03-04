@@ -1,0 +1,6 @@
+# 同時処理できるプロセスを指定(マシンにもよるが50以下がいいらしい..)
+:concurrency: 25
+# Railsサーバーからmailersとういう名前のキューで送られるために指定。（これを書かないとbundle exec sidekiqの時に「-q mailers」の記載が必要）
+:queues:
+  - default
+  - mailers
