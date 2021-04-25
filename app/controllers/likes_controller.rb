@@ -8,7 +8,8 @@ class LikesController < ApplicationController
     # current_user.like(@post)
     # withメソッドでメイラーからparamsで取得できるようにする。
     # deliver_laterメソッドを使って非同期でメール送信を行う。(Active Jobを裏側で使っているらしい...)
-    UserMailer.with(user_from: current_user, user_to: @post.user, post: @post).like_post.deliver_later if current_user.like(@post)
+    # いいねをされたユーザー(@post.user)の通知設定フラグ(notification_like)がtureであればメール送信をする。
+    UserMailer.with(user_from: current_user, user_to: @post.user, post: @post).like_post.deliver_later if current_user.like(@post) && @post.user.notification_like?
   end
 
   def destroy

@@ -6,7 +6,8 @@ class CommentsController < ApplicationController
     # user_idはcurrent_userを使って、post_idはURLからparams経由で登録をする。
     @comment = current_user.comments.build(comment_params)
     # @comment.save
-    UserMailer.with(user_from: current_user, user_to: @comment.post.user, comment: @comment).comment_post.deliver_later if @comment.save
+    # コメントをされたユーザー(@comment.post.user)の通知設定フラグ(notification_comment)がtureであればメール送信をする。
+    UserMailer.with(user_from: current_user, user_to: @comment.post.user, comment: @comment).comment_post.deliver_later if @comment.save && @comment.post.user.notification_comment?
   end
 
   def edit
