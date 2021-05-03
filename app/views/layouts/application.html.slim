@@ -22,3 +22,6 @@ html
     = yield
     / モーダル表示用にレンダリングさせる。
     = render 'shared/modal'
+    / any_loginを使用するために追加
+    = any_login_here if defined?(AnyLogin)
+

@@ -36,5 +36,6 @@ Rails.application.routes.draw do
     # アカウントはログインユーザーからみてアプリケーション上、１つしか存在しないので:idを生成しない「resource」を使用する。
     resource :account, only: %i[edit update]
     resources :activities, only: %i[index]
+    resource :notification_setting, only: %i[edit update]
   end
 end

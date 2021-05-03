@@ -1,0 +1,16 @@
+/ urlオプションを設定しないと「/users/:id」のアクションになってしまうため、urlを設定&httpメソッド設定。
+= form_with model: @user, url: mypage_notification_setting_path, method: :patch, local: true do |f|
+  / 以前作成したエラー表示用のテンプレートを使用する。エラー表示用にオブジェクト(@user)を渡す。
+  = render 'shared/error_messages', object: f.object
+  / f.check_boxを使い通知設定カラムにチェックボックスを用意する。
+  .form-group
+    = f.check_box :notification_like
+    = f.label :notification_like
+  .form-group
+    = f.check_box :notification_comment
+    = f.label :notification_comment
+  .form-group
+    = f.check_box :notification_follow
+    = f.label :notification_follow
+
+  = f.submit class: 'btn btn-primary btn-raised'
